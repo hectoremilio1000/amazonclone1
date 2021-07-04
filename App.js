@@ -1,21 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View} from 'react-native';
+import AdressScreen from './src/screens/AddressScreen/AdressScreen';
+import HomeScreen from './src/screens/HomeScreen/HomeScreen'
+import ProductScreen from './src/screens/ProducScreen/ProductScreen'
+import ShoppingCartScreen from './src/screens/ShoppingCartScreen/ShoppingCartScreen'
+import Test from './src/screens/Test/Test'
+import Router from './src/router/Router';
 
-export default function App() {
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './src/aws-exports';
+Amplify.configure(awsconfig);
+import { withAuthenticator, AmplifySignOut } from 'aws-amplify-react-native';
+
+ function Index() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Router/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default withAuthenticator(Index)
